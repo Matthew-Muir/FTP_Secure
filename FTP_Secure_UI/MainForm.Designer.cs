@@ -29,13 +29,13 @@ namespace FTP_Secure_UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -56,6 +56,19 @@ namespace FTP_Secure_UI
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip9 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip10 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip11 = new System.Windows.Forms.ToolTip(this.components);
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -100,13 +113,6 @@ namespace FTP_Secure_UI
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(309, 20);
             this.textBox1.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(96, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(309, 20);
-            this.textBox2.TabIndex = 5;
             // 
             // textBox3
             // 
@@ -158,6 +164,7 @@ namespace FTP_Secure_UI
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "GetFiles",
@@ -201,6 +208,7 @@ namespace FTP_Secure_UI
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "True",
@@ -221,6 +229,7 @@ namespace FTP_Secure_UI
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Active",
@@ -232,6 +241,7 @@ namespace FTP_Secure_UI
             // 
             // comboBox4
             // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
             "Implicit",
@@ -258,6 +268,7 @@ namespace FTP_Secure_UI
             this.button1.TabIndex = 22;
             this.button1.Text = "Help";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -268,6 +279,7 @@ namespace FTP_Secure_UI
             this.button2.TabIndex = 23;
             this.button2.Text = "Done";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -287,12 +299,92 @@ namespace FTP_Secure_UI
             this.button4.TabIndex = 25;
             this.button4.Text = "Browse";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 10000;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.ReshowDelay = 100;
+            // 
+            // toolTip2
+            // 
+            this.toolTip2.AutoPopDelay = 10000;
+            this.toolTip2.InitialDelay = 500;
+            this.toolTip2.ReshowDelay = 100;
+            // 
+            // toolTip3
+            // 
+            this.toolTip3.AutoPopDelay = 10000;
+            this.toolTip3.InitialDelay = 500;
+            this.toolTip3.ReshowDelay = 100;
+            // 
+            // toolTip4
+            // 
+            this.toolTip4.AutoPopDelay = 10000;
+            this.toolTip4.InitialDelay = 500;
+            this.toolTip4.ReshowDelay = 100;
+            // 
+            // toolTip5
+            // 
+            this.toolTip5.AutoPopDelay = 10000;
+            this.toolTip5.InitialDelay = 500;
+            this.toolTip5.ReshowDelay = 100;
+            // 
+            // toolTip6
+            // 
+            this.toolTip6.AutoPopDelay = 10000;
+            this.toolTip6.InitialDelay = 500;
+            this.toolTip6.ReshowDelay = 100;
+            // 
+            // toolTip7
+            // 
+            this.toolTip7.AutoPopDelay = 10000;
+            this.toolTip7.InitialDelay = 500;
+            this.toolTip7.ReshowDelay = 100;
+            // 
+            // toolTip8
+            // 
+            this.toolTip8.AutoPopDelay = 10000;
+            this.toolTip8.InitialDelay = 500;
+            this.toolTip8.ReshowDelay = 100;
+            // 
+            // toolTip9
+            // 
+            this.toolTip9.AutoPopDelay = 10000;
+            this.toolTip9.InitialDelay = 500;
+            this.toolTip9.ReshowDelay = 100;
+            // 
+            // toolTip10
+            // 
+            this.toolTip10.AutoPopDelay = 10000;
+            this.toolTip10.InitialDelay = 500;
+            this.toolTip10.ReshowDelay = 100;
+            // 
+            // toolTip11
+            // 
+            this.toolTip11.AutoPopDelay = 10000;
+            this.toolTip11.InitialDelay = 500;
+            this.toolTip11.ReshowDelay = 100;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(96, 33);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(309, 20);
+            this.numericUpDown1.TabIndex = 26;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 349);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -313,7 +405,6 @@ namespace FTP_Secure_UI
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -325,6 +416,7 @@ namespace FTP_Secure_UI
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "FTPS Task Editor";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,7 +429,6 @@ namespace FTP_Secure_UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
@@ -358,5 +449,17 @@ namespace FTP_Secure_UI
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.ToolTip toolTip3;
+        private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.ToolTip toolTip5;
+        private System.Windows.Forms.ToolTip toolTip6;
+        private System.Windows.Forms.ToolTip toolTip7;
+        private System.Windows.Forms.ToolTip toolTip8;
+        private System.Windows.Forms.ToolTip toolTip9;
+        private System.Windows.Forms.ToolTip toolTip10;
+        private System.Windows.Forms.ToolTip toolTip11;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

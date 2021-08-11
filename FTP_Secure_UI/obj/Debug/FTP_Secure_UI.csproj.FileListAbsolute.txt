@@ -7,3 +7,4 @@ C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.pdb
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.MainForm.resources
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csproj.GenerateResource.cache
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.HelpForm.resources
