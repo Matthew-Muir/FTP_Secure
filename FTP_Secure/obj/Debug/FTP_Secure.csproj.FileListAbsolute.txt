@@ -1,0 +1,8 @@
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\FTP_Secure.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\FTP_Secure.pdb
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.AssemblyReference.cache
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.Resource1.resources
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.GenerateResource.cache
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.CoreCompileInputs.cache
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.pdb
