@@ -7,10 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 using WinSCP;
 
 // PublicKeyToken=54baab18257b9ddd
-
+//"FTP_Secure_UI.FTP_Secure.UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48"
 namespace FTP_Secure
 {
-    [DtsTaskAttribute(Description = "Task that can upload and download files via FTPS to a server", DisplayName ="FTPS-Task",IconResource ="FTP_Secure.Resources.ftp.ico")]
+    [DtsTaskAttribute(Description = "Task that can upload and download files via FTPS to a server", DisplayName ="FTPS Task",IconResource ="FTP_Secure.Resources.ftp.ico", UITypeName = "FTP_Secure_UI.FTP_Secure.UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48")]
     public class FTP_Secure : Task
     {
         private const String TASK_NAME = "Secure FTP Task";

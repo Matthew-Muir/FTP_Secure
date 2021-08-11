@@ -6,3 +6,6 @@ C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.Ge
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.CoreCompileInputs.cache
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.pdb
+C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Tasks\FTP_Secure.dll
+C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Tasks\FTP_Secure.pdb
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.CopyComplete
