@@ -1,5 +1,4 @@
 ﻿using Microsoft.SqlServer.Dts.Runtime;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace FTP_Secure_UI
 {
@@ -87,7 +87,7 @@ namespace FTP_Secure_UI
         private void button2_Click(object sender, EventArgs e)
         {
             taskHost.Properties["FtpHostName"].SetValue(taskHost, textBox1.Text);
-            taskHost.Properties["FtpPortNumber"].SetValue(taskHost, numericUpDown1.Value);
+            taskHost.Properties["FtpPortNumber"].SetValue(taskHost, (int)numericUpDown1.Value);
             taskHost.Properties["FtpUserName"].SetValue(taskHost, textBox3.Text);
             taskHost.Properties["FtpPassword"].SetValue(taskHost, textBox4.Text);
             taskHost.Properties["TlsHostCertificateFingerprint"].SetValue(taskHost, textBox5.Text);

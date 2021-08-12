@@ -144,25 +144,44 @@ namespace FTP_Secure
         private Session EstablishSession()
         {
             Session winScpSession = new Session();
+            SessionOptions winScpSessionOptions;
 
             Protocol ftpProtocol = (Protocol)Enum.Parse(typeof(Protocol), this.FtpProtocolName);
             FtpMode ftpMode = (FtpMode)Enum.Parse(typeof(FtpMode), this.FtpMode);
             FtpSecure ftpSecure = (FtpSecure)Enum.Parse(typeof(FtpSecure), this.FtpSecure);
 
-
-            SessionOptions winScpSessionOptions = new SessionOptions
+            if (!String.IsNullOrEmpty(TlsHostCertificateFingerprint))
             {
-                Protocol = ftpProtocol,
-                HostName = this.FtpHostName,
-                PortNumber = this.FtpPortNumber,
-                UserName = this.FtpUserName,
-                Password = this.FtpPassword,
-                TlsHostCertificateFingerprint = this.TlsHostCertificateFingerprint,
-                FtpMode = ftpMode,
-                FtpSecure = ftpSecure
+                winScpSessionOptions = new SessionOptions
+                {
+                    Protocol = ftpProtocol,
+                    HostName = this.FtpHostName,
+                    PortNumber = this.FtpPortNumber,
+                    UserName = this.FtpUserName,
+                    Password = this.FtpPassword,
+                    TlsHostCertificateFingerprint = this.TlsHostCertificateFingerprint,
+                    FtpMode = ftpMode,
+                    FtpSecure = ftpSecure
 
 
-            };
+                };
+            }
+            else
+            {
+                winScpSessionOptions = new SessionOptions
+                {
+                    Protocol = ftpProtocol,
+                    HostName = this.FtpHostName,
+                    PortNumber = this.FtpPortNumber,
+                    UserName = this.FtpUserName,
+                    Password = this.FtpPassword,
+                    FtpMode = ftpMode,
+                    FtpSecure = ftpSecure
+
+
+                };
+            }
+         
 
             winScpSession.Open(winScpSessionOptions);
 
@@ -197,11 +216,11 @@ namespace FTP_Secure
                 result = DTSExecResult.Failure;
             }
 
-            if (String.IsNullOrEmpty(this.TlsHostCertificateFingerprint))
-            {
-                componentEvents.FireError(0, TASK_NAME, FtpSshHostKeyFingerprint_MISSING_MESAGE, String.Empty, 0);
-                result = DTSExecResult.Failure;
-            }
+            //if (String.IsNullOrEmpty(this.TlsHostCertificateFingerprint))
+            //{
+            //    componentEvents.FireError(0, TASK_NAME, FtpSshHostKeyFingerprint_MISSING_MESAGE, String.Empty, 0);
+            //    result = DTSExecResult.Failure;
+            //}
 
             if (String.IsNullOrEmpty(this.FtpOperationName))
             {
