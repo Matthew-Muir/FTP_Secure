@@ -42,6 +42,8 @@ namespace FTP_Secure
         public Boolean FtpRemove { get; set; } = false;
         public String FtpMode { get; set; } = "Passive";
         public String FtpSecure { get; set; } = "Explicit";
+        public String FtpLogPath { get; set; } = @"C:\";
+        public String FtpLogPathExstension { get; } = "\\FTPSlog_" + DateTime.Now.ToString("yyyyMMDD") + ".txt";
 
         public override DTSExecResult Validate(Connections connections, VariableDispenser variableDispenser, IDTSComponentEvents componentEvents, IDTSLogging log)
         {
@@ -109,7 +111,7 @@ namespace FTP_Secure
                 using (Session winScpSession = this.EstablishSession())
                 {
                     componentEvents.FireInformation(0, TASK_NAME, SESSION_OPEN_MESSAGE, String.Empty, 0, ref fireAgain);
-
+                    TransferOperationResult transferResult;
                     // Determine the operation mode.
                     OperationMode operation = (OperationMode)Enum.Parse(typeof(OperationMode), this.FtpOperationName);
                     switch (operation)
@@ -122,14 +124,15 @@ namespace FTP_Secure
                                 winScpSession.CreateDirectory(this.FtpRemotePath);
                                 componentEvents.FireInformation(0, TASK_NAME, String.Format(REMOTE_DIRECTORY_CREATED_MESSAGE_PATTERN, this.FtpRemotePath), String.Empty, 0, ref fireAgain);
                             }
-                            winScpSession.PutFiles(this.FtpLocalPath, this.FtpRemotePath, this.FtpRemove);
+                            transferResult = winScpSession.PutFiles(this.FtpLocalPath, this.FtpRemotePath, this.FtpRemove);
                             break;
                         case OperationMode.GetFiles:
                         default:
-                            winScpSession.GetFiles(this.FtpRemotePath, this.FtpLocalPath, this.FtpRemove);
+                            transferResult = winScpSession.GetFiles(this.FtpRemotePath, this.FtpLocalPath, this.FtpRemove);
                             break;
                     }
 
+                    transferResult.Check();
                     return DTSExecResult.Success;
                 }
             }
@@ -181,7 +184,12 @@ namespace FTP_Secure
 
                 };
             }
-         
+
+            //Location to store session log
+            if (!String.IsNullOrEmpty(FtpLogPath))
+            {
+                winScpSession.SessionLogPath = FtpLogPath + FtpLogPathExstension;
+            }
 
             winScpSession.Open(winScpSessionOptions);
 

@@ -33,7 +33,7 @@ namespace FTP_Secure_UI
             comboBox2.SelectedIndex = comboBox2.FindStringExact(taskHost.Properties["FtpRemove"].GetValue(taskHost).ToString());
             comboBox3.SelectedIndex = comboBox3.FindStringExact(taskHost.Properties["FtpMode"].GetValue(taskHost).ToString());
             comboBox4.SelectedIndex = comboBox4.FindStringExact(taskHost.Properties["FtpSecure"].GetValue(taskHost).ToString());
-
+            textBox2.Text = taskHost.Properties["FtpLogPath"].GetValue(taskHost).ToString();
 
             #endregion
 
@@ -50,7 +50,7 @@ namespace FTP_Secure_UI
             toolTip9.SetToolTip(label9, "Delete source files/directory after transfer?");
             toolTip10.SetToolTip(label10, "This setting will be determined by FTP server.\nBy default Passive");
             toolTip11.SetToolTip(label11, "Explicit mode usually uses the same port as Plain (unsecure) mode.\nImplicit mode requires dedicated port.\nImplicit mode cannot be run on the same port as TLS/SSL Explicit mode.\nImplicit mode cannot be run on the same port as plain (unsecure) communication.");
-
+            toolTip12.SetToolTip(textBox2, "Output path for log files. Leave blank to turn off logging");
 
             #endregion
         }
@@ -97,6 +97,18 @@ namespace FTP_Secure_UI
             taskHost.Properties["FtpRemove"].SetValue(taskHost, Boolean.Parse(comboBox2.Text));
             taskHost.Properties["FtpMode"].SetValue(taskHost, comboBox3.Text);
             taskHost.Properties["FtpSecure"].SetValue(taskHost, comboBox4.Text);
+            taskHost.Properties["FtpLogPath"].SetValue(taskHost, textBox2);
+        }
+
+        //Browse button - For setting log file path.
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog browserDialog = new FolderBrowserDialog();
+
+            if (browserDialog.ShowDialog() ==  DialogResult.OK)
+            {
+                textBox2.Text = browserDialog.SelectedPath;
+            }
         }
     }
 }
