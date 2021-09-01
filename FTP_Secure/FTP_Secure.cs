@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.SqlServer.Dts.Runtime;
 using System.Diagnostics.CodeAnalysis;
 using WinSCP;
+using System.IO;
 
 // PublicKeyToken=54baab18257b9ddd
 //"FTP_Secure_UI.FTP_Secure.UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48"
@@ -13,6 +14,7 @@ namespace FTP_Secure
     [DtsTaskAttribute(Description = "Task that can upload and download files via FTPS to a server", DisplayName ="FTPS Task",IconResource ="FTP_Secure.Resources.ftp.ico", UITypeName = "FTP_Secure_UI.FTP_Secure_UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48")]
     public class FTP_Secure : Task
     {
+        #region Fields
         private const String TASK_NAME = "Secure FTP Task";
         private const String FtpProtocolName_MISSING_MESAGE = "FtpProtocolName has not been set.";
         private const String FtpHostName_MISSING_MESAGE = "FtpHostName has not been set.";
@@ -29,6 +31,7 @@ namespace FTP_Secure
         private const String REMOTE_FILES_MISSING_MESSAGE_PATTERN = "The specified remote file(s) [{0}] cannot be found.";
         private const String EXCEPTION_MESSAGE_PATTERN = "An error has occurred:\r\n\r\n{0}";
         private const String UNKNOWN_EXCEPTION_MESSAGE = "(No other information available.)";
+        private const String XML_LOG_NAME = "FTPS_XML_LOG.XML";
 
         public String FtpProtocolName { get; } = "Ftp";
         public String FtpHostName { get; set; } = "";
@@ -43,8 +46,7 @@ namespace FTP_Secure
         public String FtpMode { get; set; } = "Passive";
         public String FtpSecure { get; set; } = "Explicit";
         public String FtpLogPath { get; set; } = @"C:\";
-        public String FtpLogPathExstension { get; } = "\\FTPSlog_" + DateTime.Now.ToString("yyyyMMDD") + ".txt";
-
+        #endregion
         public override DTSExecResult Validate(Connections connections, VariableDispenser variableDispenser, IDTSComponentEvents componentEvents, IDTSLogging log)
         {
             Boolean fireAgain = false;
@@ -95,6 +97,10 @@ namespace FTP_Secure
             }
             catch (Exception exc)
             {
+                var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+
                 String exceptionMessage = exc != null ? exc.Message : UNKNOWN_EXCEPTION_MESSAGE;
                 componentEvents.FireError(0, TASK_NAME, String.Format(EXCEPTION_MESSAGE_PATTERN, exceptionMessage), String.Empty, 0);
                 return DTSExecResult.Failure;
@@ -108,7 +114,7 @@ namespace FTP_Secure
             try
             {
                 // Create a new FTP session.
-                using (Session winScpSession = this.EstablishSession())
+                using (Session winScpSession = this.EstablishSession(true))
                 {
                     componentEvents.FireInformation(0, TASK_NAME, SESSION_OPEN_MESSAGE, String.Empty, 0, ref fireAgain);
                     TransferOperationResult transferResult;
@@ -126,6 +132,7 @@ namespace FTP_Secure
                             }
                             transferResult = winScpSession.PutFiles(this.FtpLocalPath, this.FtpRemotePath, this.FtpRemove);
                             break;
+
                         case OperationMode.GetFiles:
                         default:
                             transferResult = winScpSession.GetFiles(this.FtpRemotePath, this.FtpLocalPath, this.FtpRemove);
@@ -133,23 +140,43 @@ namespace FTP_Secure
                     }
 
                     transferResult.Check();
+
+                    var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                    var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                    UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+
+                    
                     return DTSExecResult.Success;
                 }
             }
             catch (Exception exc)
             {
+                var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+
                 String exceptionMessage = exc == null ? UNKNOWN_EXCEPTION_MESSAGE : exc.Message;
                 componentEvents.FireError(0, TASK_NAME, String.Format(EXCEPTION_MESSAGE_PATTERN, exceptionMessage), String.Empty, 0);
                 return DTSExecResult.Failure;
             }
         }
 
-        private Session EstablishSession()
+        private Session EstablishSession(bool logConnection = false)
         {
             Session winScpSession = new Session();
+
+            if (logConnection && String.IsNullOrEmpty(FtpLogPath) == false)
+            {
+                //Create the standard log.
+                winScpSession.SessionLogPath = CreateFlogFile.CurrentStandardLogName(FtpLogPath);
+                // Create the xml log that is referrenced in the formatted log.
+                winScpSession.XmlLogPath = FtpLogPath + XML_LOG_NAME;
+                winScpSession.XmlLogPreserve = true;
+            }
+
             SessionOptions winScpSessionOptions;
 
-            Protocol ftpProtocol = (Protocol)Enum.Parse(typeof(Protocol), this.FtpProtocolName);
+            WinSCP.Protocol ftpProtocol = (WinSCP.Protocol)Enum.Parse(typeof(Protocol), this.FtpProtocolName);
             FtpMode ftpMode = (FtpMode)Enum.Parse(typeof(FtpMode), this.FtpMode);
             FtpSecure ftpSecure = (FtpSecure)Enum.Parse(typeof(FtpSecure), this.FtpSecure);
 
@@ -183,12 +210,6 @@ namespace FTP_Secure
 
 
                 };
-            }
-
-            //Location to store session log
-            if (!String.IsNullOrEmpty(FtpLogPath))
-            {
-                winScpSession.SessionLogPath = FtpLogPath + FtpLogPathExstension;
             }
 
             winScpSession.Open(winScpSessionOptions);
@@ -251,10 +272,5 @@ namespace FTP_Secure
             return result;
         }
 
-        public enum OperationMode
-        {
-            GetFiles,
-            PutFiles
-        }
     }
 }

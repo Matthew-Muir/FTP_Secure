@@ -1,6 +1,5 @@
 C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Tasks\FTP_Secure_UI.dll
 C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Tasks\FTP_Secure_UI.pdb
-C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csproj.AssemblyReference.cache
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.HelpForm.resources
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.MainForm.resources
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csproj.GenerateResource.cache
@@ -8,3 +7,8 @@ C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csp
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csproj.CopyComplete
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.pdb
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\bin\Debug\FTP_Secure_UI.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\bin\Debug\FTP_Secure_UI.pdb
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\bin\Debug\Microsoft.SqlServer.Dts.Design.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\bin\Debug\Microsoft.SqlServer.ManagedDTS.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure_UI\obj\Debug\FTP_Secure_UI.csproj.AssemblyReference.cache

@@ -8,5 +8,11 @@ C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.Co
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.CopyComplete
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.pdb
-C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.AssemblyReference.cache
 C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Tasks\WinSCP.exe
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\WinSCP.exe
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.DataTransformationServices.Controls.DLL
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.Dts.Design.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.ManagedDTS.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\WinSCPnet.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll

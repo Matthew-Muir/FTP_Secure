@@ -45,8 +45,8 @@ namespace FTP_Secure_UI
             toolTip4.SetToolTip(label4, "Login Credential to access server");
             toolTip5.SetToolTip(label5, "This value isn't always necessary depending on FTP server configuration.\nThis credential should be provided to you by server the admin.\nElse connect to server via WinSCP app and obtain credential from Session->Server/Protocol Info");
             toolTip6.SetToolTip(label6, "GetFiles (download files from server)\nPutFiles (Upload files to server)");
-            toolTip7.SetToolTip(label7, "File location on local machine.\nE.G. C:\\folder\\myfile.txt\nThis field can accept wild card expression.\nRead help for more details.");
-            toolTip8.SetToolTip(label8, "Path to destination on server\nE.G. / to access root \n/myfolder/ to access a particular directory");
+            toolTip7.SetToolTip(label7, "File location on local machine.\nE.G. C:\\folder\\myfile.txt\nOr Transfer an entire directory E.G. C:\\folder\nThis field can accept wild card expression.\nRead help for more details.");
+            toolTip8.SetToolTip(label8, "Path to destination on server\nE.G. / to access root \n/myfolder/ to access a particular directory\nIf Operation is set to Pull then set this field to file name from server.");
             toolTip9.SetToolTip(label9, "Delete source files/directory after transfer?");
             toolTip10.SetToolTip(label10, "This setting will be determined by FTP server.\nBy default Passive");
             toolTip11.SetToolTip(label11, "Explicit mode usually uses the same port as Plain (unsecure) mode.\nImplicit mode requires dedicated port.\nImplicit mode cannot be run on the same port as TLS/SSL Explicit mode.\nImplicit mode cannot be run on the same port as plain (unsecure) communication.");
@@ -97,7 +97,7 @@ namespace FTP_Secure_UI
             taskHost.Properties["FtpRemove"].SetValue(taskHost, Boolean.Parse(comboBox2.Text));
             taskHost.Properties["FtpMode"].SetValue(taskHost, comboBox3.Text);
             taskHost.Properties["FtpSecure"].SetValue(taskHost, comboBox4.Text);
-            taskHost.Properties["FtpLogPath"].SetValue(taskHost, textBox2);
+            taskHost.Properties["FtpLogPath"].SetValue(taskHost, textBox2.Text);
         }
 
         //Browse button - For setting log file path.
@@ -107,7 +107,7 @@ namespace FTP_Secure_UI
 
             if (browserDialog.ShowDialog() ==  DialogResult.OK)
             {
-                textBox2.Text = browserDialog.SelectedPath;
+                textBox2.Text = browserDialog.SelectedPath + "\\";
             }
         }
     }
