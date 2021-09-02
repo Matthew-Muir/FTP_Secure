@@ -6,6 +6,7 @@ using Microsoft.SqlServer.Dts.Runtime;
 using System.Diagnostics.CodeAnalysis;
 using WinSCP;
 using System.IO;
+using System.Windows.Forms;
 
 // PublicKeyToken=54baab18257b9ddd
 //"FTP_Secure_UI.FTP_Secure.UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48"
@@ -46,6 +47,7 @@ namespace FTP_Secure
         public String FtpMode { get; set; } = "Passive";
         public String FtpSecure { get; set; } = "Explicit";
         public String FtpLogPath { get; set; } = @"C:\";
+
         #endregion
         public override DTSExecResult Validate(Connections connections, VariableDispenser variableDispenser, IDTSComponentEvents componentEvents, IDTSLogging log)
         {
@@ -97,9 +99,13 @@ namespace FTP_Secure
             }
             catch (Exception exc)
             {
-                var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
-                var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
-                UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+                
+
+                    var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                    var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                    UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+                
+                
 
                 String exceptionMessage = exc != null ? exc.Message : UNKNOWN_EXCEPTION_MESSAGE;
                 componentEvents.FireError(0, TASK_NAME, String.Format(EXCEPTION_MESSAGE_PATTERN, exceptionMessage), String.Empty, 0);
@@ -120,6 +126,7 @@ namespace FTP_Secure
                     TransferOperationResult transferResult;
                     // Determine the operation mode.
                     OperationMode operation = (OperationMode)Enum.Parse(typeof(OperationMode), this.FtpOperationName);
+
                     switch (operation)
                     {
                         case OperationMode.PutFiles:
@@ -140,20 +147,26 @@ namespace FTP_Secure
                     }
 
                     transferResult.Check();
+                    winScpSession.Close();
 
-                    var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
-                    var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
-                    UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
 
+                        var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                        var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                        UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
                     
+
+
                     return DTSExecResult.Success;
                 }
             }
             catch (Exception exc)
             {
-                var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
-                var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
-                UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+                
+
+                    var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
+                    var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
+                    UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
+                
 
                 String exceptionMessage = exc == null ? UNKNOWN_EXCEPTION_MESSAGE : exc.Message;
                 componentEvents.FireError(0, TASK_NAME, String.Format(EXCEPTION_MESSAGE_PATTERN, exceptionMessage), String.Empty, 0);

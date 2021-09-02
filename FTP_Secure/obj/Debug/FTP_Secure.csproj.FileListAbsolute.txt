@@ -16,3 +16,4 @@ C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\WinSCPnet.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
 C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Users\mattm\source\repos\FTP_Secure\FTP_Secure\obj\Debug\FTP_Secure.csproj.AssemblyReference.cache

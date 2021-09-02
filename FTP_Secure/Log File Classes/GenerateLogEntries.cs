@@ -17,6 +17,7 @@ namespace FTP_Secure
 
 
             var dts = nav.SelectSingleNode("/session/@start").Value.Substring(0, 19);
+            dts = DateTime.Parse(dts).ToLocalTime().ToString("yyyy-MM-ddTHH:mm:ss");
             var protocol = DetermineProtocol(nav);
             var transferType = DetermineTransferType(doc);
 
@@ -36,7 +37,7 @@ namespace FTP_Secure
             {
                 return Protocol.Sftp;
             }
-            else if (sessionNameValue.Contains("ftps"))
+            else if (sessionNameValue.Contains("ftp") && (sessionNameValue.Contains("implicit") || sessionNameValue.Contains("explicit")))
             {
                 return Protocol.Ftps;
             }
