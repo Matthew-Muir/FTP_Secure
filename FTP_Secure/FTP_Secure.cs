@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using WinSCP;
 using System.IO;
 using System.Windows.Forms;
+using SecureFTP.Get_Latest_File;
 
 // PublicKeyToken=54baab18257b9ddd
 //"FTP_Secure_UI.FTP_Secure.UI, FTP_Secure_UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0dcba816e36a4a48"
@@ -137,6 +138,12 @@ namespace FTP_Secure
                                 winScpSession.CreateDirectory(this.FtpRemotePath);
                                 componentEvents.FireInformation(0, TASK_NAME, String.Format(REMOTE_DIRECTORY_CREATED_MESSAGE_PATTERN, this.FtpRemotePath), String.Empty, 0, ref fireAgain);
                             }
+                            //If FtpLocalPath contains L@TEST then get most recently written file.
+                            if (FtpLocalPath.Contains("L@TEST"))
+                            {
+                                FtpLocalPath = GetLatestFile.ReturnMostRecentWrittenFile(FtpLocalPath);
+                            }
+                            
                             transferResult = winScpSession.PutFiles(this.FtpLocalPath, this.FtpRemotePath, this.FtpRemove);
                             break;
 
@@ -149,7 +156,7 @@ namespace FTP_Secure
                     transferResult.Check();
                     winScpSession.Close();
 
-
+                        //If the transfer goes well. This will create/update the log files.
                         var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
                         var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
                         UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
@@ -161,8 +168,8 @@ namespace FTP_Secure
             }
             catch (Exception exc)
             {
-                
-
+                MessageBox.Show(exc.Message);
+                    //If the transfer reults in an error. This will create/update the log files.
                     var xmlLogExists = File.Exists(FtpLogPath + XML_LOG_NAME);
                     var fLogExists = File.Exists(CreateFlogFile.CurrentFormattedLogName(FtpLogPath));
                     UpdateRecord.UpdateLogFiles(xmlLogExists, fLogExists, FtpLogPath, XML_LOG_NAME);
